@@ -4,10 +4,10 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pygwalker as pyw
 
-st.title("Tarefa Online 5")
-
 url = "https://raw.githubusercontent.com/tmedeirosb/tsi-ad-2025/refs/heads/main/dados/dados_workflow_ivan.csv"
 df = pd.read_csv(url)
+
+st.title("Tarefa Online 5")
 
 # filtro lateral
 selected_sigla = st.sidebar.selectbox(
@@ -33,4 +33,7 @@ st.write(df)
 
 # dashboard interativo
 st.subheader("Exploração interativa dos dados")
-pyw.walk(df, env='Streamlit')
+from pygwalker.api.streamlit import StreamlitRenderer
+
+renderer = StreamlitRenderer(df)
+renderer.explorer()
